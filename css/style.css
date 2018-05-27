@@ -41,7 +41,7 @@ color:white;
   overflow: hidden;
   padding-bottom: inherit;
 }
-@media (max-width: 600px) {
+@media (max-width: 600px) and (min-width: 401px){
 
   .container-fluid {
   margin-top: 55%;
@@ -178,7 +178,7 @@ hr {
 }
 
 .container{
-  max-width: 70%;
+  max-width: 100%;
   padding-bottom: 50px;
 
 }
@@ -382,14 +382,15 @@ display: inline-block;
     top: 90%;
 
 }
+.spacer3 {
+  margin-top: 35%;
+}
   .centeredalt {
     top: 125%;
+}
 
 }
-.row
-{
- max-width: 100%;
-}
+
 .vertical-center
 {
  display: table-cell;
