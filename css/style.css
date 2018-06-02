@@ -36,7 +36,7 @@ color:white;
 /*** T H E - M A G I C - O F - O B J E C T - F I T ***/
 /*****************************************************/
 .video-container {
-  height: 50vh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
   padding-bottom: inherit;
@@ -46,7 +46,9 @@ color:white;
   .container-fluid {
   margin-top: 55%;
 }
-
+  .container-fluid2 {
+  margin-top: 35%;
+}
   .centered {
     top: 55%;
 
@@ -152,13 +154,19 @@ hr {
 .centered {
   color:#722D3C;
     position: absolute;
-    top: 45%;
+    top: 75%;
     left: 5%;
     width:100%;
     transform: translate(-5%, -5%);
 }
+h1{
+  font-size: 45px;
+}
 .container-fluid {
   margin-top: 60%;
+}
+.container-fluid2 {
+  margin-top: 35%;
 }
 .centeredalt {
   color:white;
@@ -362,6 +370,9 @@ color:black;
 .container-fluid {
   margin-top: 230%;
 }
+.container-fluid2{
+  margin-top: 145%;
+}
  .video-container {
     height: 100vh;
   }
@@ -399,13 +410,16 @@ display: inline-block;
  vertical-align: middle;
 }
   h1 {
-    font-size: 25px;
+    font-size: 35px;
   }
 }
 
 @media (min-width: 1200px){
 .container-fluid {
   margin-top: 60%;
+}
+.container-fluid2{
+  margin-top: 40%;
 }
     .centeredalt {
     top: 100%;
