@@ -366,6 +366,9 @@ color:black;
 }
 }
 @media (max-width: 400px){
+.spacer2 {
+  top:-5%;
+}
 
 .container-fluid {
   margin-top: 230%;
@@ -375,6 +378,10 @@ color:black;
 }
  .video-container {
     height: 100vh;
+    top:10%;
+  }
+  .rowcenter2{
+    padding-bottom: 40%;
   }
   .rowcenter {
 
