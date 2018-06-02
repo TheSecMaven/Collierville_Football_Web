@@ -41,14 +41,14 @@ color:white;
   overflow: hidden;
   padding-bottom: inherit;
 }
-@media (max-width: 600px) and (min-width: 401px){
+@media (max-width: 600px) and (min-width: 399px){
 
   .container-fluid {
   margin-top: 55%;
 }
 
   .centered {
-    top: 75%;
+    top: 55%;
 
 }
 
@@ -152,8 +152,9 @@ hr {
 .centered {
   color:#722D3C;
     position: absolute;
-    top: 75%;
+    top: 45%;
     left: 5%;
+    width:100%;
     transform: translate(-5%, -5%);
 }
 .container-fluid {
@@ -379,7 +380,7 @@ display: inline-block;
   margin-bottom: 10%;
 }
     .centered {
-    top: 90%;
+    top: 60%;
 
 }
 .spacer3 {
@@ -398,7 +399,7 @@ display: inline-block;
  vertical-align: middle;
 }
   h1 {
-    font-size: 22px;
+    font-size: 25px;
   }
 }
 
