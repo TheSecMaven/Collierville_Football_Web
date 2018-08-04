@@ -123,8 +123,10 @@
                                                 <li>
                                                   <a href="schedule.html" target="_blank">Schedule</a>
                                                 </li>
-                                                <li>
-                                                  <a href="http://www.teamsideline.com/Collierville" target="_blank">Registration</a>
+                                               <li>
+                                                  <a class="dropdown-button" href="#!" data-activates="registrationdropdownalt" data-beloworigin="true">Registration
+                                                    <i class="mdi-navigation-arrow-drop-down right"></i>
+                                                  </a>
                                                 </li>
                                                  <li>
                                                   <a href="seasonticket.html" target="_blank">Season Tickets</a>
@@ -507,5 +509,26 @@ a Bachelor of Science in Education. He is married to Brittanee Bachelor.</p>
                                                   <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'></script>
                                                   <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'></script>
                                                   <script  src="js/index.js"></script>
+                                                  <script>
+                                                    $(document).ready(function(){
+                                                            $('.button-collapse').sideNav({
+                                                                menuWidth: 300, // Default is 300
+                                                                edge: 'left', // Choose the horizontal origin
+                                                                closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                                                                draggable: true // Choose whether you can drag to open on touch screens
+                                                              }
+                                                            );
+
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $('.dropdown-trigger').dropdown();
+                                                            // START OPEN
+                                                          });
+                                                        </script>
                                                 </body>
                                               </html>
