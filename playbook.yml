@@ -12,6 +12,17 @@
         dest: /var/www/html
       with_fileglob: 
         - "6thgrade.html"
+        - "7thand8thgrade.html"
+        - "9and10yearold.html"
+        - "facilities.html"
+        - "freshman.html"
+        - "index.html"
+        - "news.html"
+        - "schedule.html"
+        - "seasonticket.html"
+        - "sponsors.html"
+        - "swag.html"
+        - "varsity.html"
     - name: Copy html web pages and content to apache directory
       copy:
         src: css/
