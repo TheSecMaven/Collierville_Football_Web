@@ -1,0 +1,32 @@
+#
+# Playbook to update apache after updates to website
+#
+- hosts: 51.158.112.30
+  remote_user: jenkins
+  become: yes
+  become_user: root
+- name: Copy html web pages and content to apache directory
+  copy:
+    src: {{item}}
+    dest: /var/www/html/
+    with_fileglob: *.html
+- name: Copy html web pages and content to apache directory
+  copy:
+    src: css/
+    dest: /var/www/html/css/
+- name: Copy html web pages and content to apache directory
+  copy:
+    src: assets/
+    dest: /var/www/html/assets/
+- name: Copy html web pages and content to apache directory
+  copy:
+    src: compiled/
+    dest: /var/www/html/compiled/
+- name: Copy html web pages and content to apache directory
+  copy:
+    src: imgs/
+    dest: /var/www/html/imgs/
+- name: Copy html web pages and content to apache directory
+  copy:
+    src: js/
+    dest: /var/www/html/js/
