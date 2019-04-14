@@ -6,7 +6,7 @@
   become: yes
   become_user: root
   tasks:
-      - name: Copy html web pages and content to apache directory
+    - name: Copy html web pages and content to apache directory
       copy:
         src: "{{ item }}"
         dest: /var/www/html
