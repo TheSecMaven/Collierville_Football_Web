@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''
         
-ansible-playbook playbook.yml --extra-vars ansible_become_pass=qV-g}Yfu{CAqY#6G        '''
+        ansible-playbook -i hosts/chshosts.yml playbook.yml --extra-vars ansible_become_pass=qV-g}Yfu{CAqY#6G        '''
       }
     }
   }

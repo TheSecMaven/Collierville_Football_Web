@@ -1,7 +1,7 @@
 #
 # Playbook to update apache after updates to website
 #
-- hosts: 51.158.112.30
+- hosts: chsservers
   remote_user: jenkins
   become: yes
   become_user: root
