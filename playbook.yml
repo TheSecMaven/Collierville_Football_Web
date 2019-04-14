@@ -8,12 +8,6 @@
   tasks:
     - name: Copy html web pages and content to apache directory
       copy:
-        src: "{{ item }}"
-        dest: /var/www/html
-        with_items: 
-          - 6thgrade.html
-    - name: Copy html web pages and content to apache directory
-      copy:
         src: css/
         dest: /var/www/html/css/
     - name: Copy html web pages and content to apache directory
