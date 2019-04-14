@@ -11,7 +11,7 @@
         src: "{{ item }}"
         dest: /var/www/html
       with_fileglob: 
-        - /*.html
+        - /js/../*.html
     - name: Copy html web pages and content to apache directory
       copy:
         src: css/
