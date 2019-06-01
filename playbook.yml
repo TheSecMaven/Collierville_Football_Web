@@ -37,9 +37,5 @@
         dest: /var/www/html/compiled/
     - name: Copy html web pages and content to apache directory
       copy:
-        src: imgs/
-        dest: /var/www/html/imgs/
-    - name: Copy html web pages and content to apache directory
-      copy:
         src: js/
         dest: /var/www/html/js/
