@@ -11,7 +11,7 @@
         marker_end: "navbarend"
         insertafter: "<body>"
         block: "{{ lookup('file', 'shared_components/navbar.html') }}"
-      with_fileglob:
+      with_items:
         - "/var/www/html/sixthgrade.html"
         - "/var/www/html/seventhandeighthgrade.html"
         - "/var/www/html/nineandtenyearold.html"
