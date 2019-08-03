@@ -3,10 +3,10 @@
 #
 - hosts: chsservers
   remote_user: jenkins
-  become: yes
-  become_user: root
   tasks:
     - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
       blockinfile:
         path: "{{ item }}"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
