@@ -8,9 +8,8 @@ pipeline {
       steps {
         sh '''
         ansible-playbook --version
-        ansible-playbook manage_content.yml        
         ansible-playbook -i hosts/chshosts.yml playbook.yml --extra-vars ansible_become_pass=qV-g}Yfu{CAqY#6G
-        
+        ansible-playbook -i hosts/chshosts.yml manage_content.yml --extra-vars ansible_become_pass=qV-g}Yfu{CAqY#6G        
         '''
 
       }

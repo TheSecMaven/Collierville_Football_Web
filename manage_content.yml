@@ -1,7 +1,7 @@
 #
 # Playbook to update apache after updates to website
 #
-- hosts: localhost
+- hosts: chsservers
   tasks:
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
@@ -12,25 +12,26 @@
         insertafter: "<body>"
         block: "{{ lookup('file', 'shared_components/navbar.html') }}"
       with_fileglob:
-        - "sixthgrade.html"
-        - "seventhandeighthgrade.html"
-        - "nineandtenyearold.html"
-        - "facilities.html"
-        - "freshman.html"
-        - "index.html"
-        - "news.html"
-        - "schedule.html"
-        - "seasonticket.html"
-        - "sponsors.html"
-        - "swag.html"
-        - "varsity.html"
+        - "/var/www/html/sixthgrade.html"
+        - "/var/www/html/seventhandeighthgrade.html"
+        - "/var/www/html/nineandtenyearold.html"
+        - "/var/www/html/facilities.html"
+        - "/var/www/html/freshman.html"
+        - "/var/www/html/index.html"
+        - "/var/www/html/news.html"
+        - "/var/www/html/schedule.html"
+        - "/var/www/html/seasonticket.html"
+        - "/var/www/html/sponsors.html"
+        - "/var/www/html/swag.html"
+        - "/var/www/html/varsity.html"
     - name: Read users from CSV file and return a dictionary
       read_csv:
         path: shared_components/varsity_schedule.csv
       register: varsityschedule
+      delegate_to: localhost
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "index.html"
+        path: "/var/www/html/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
@@ -43,7 +44,7 @@
       with_items: "{{varsityschedule.list}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "index.html"
+        path: "/var/www/html/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
         marker_begin: "thepast"
         marker_end: "thepastend"
@@ -51,7 +52,7 @@
         block: " <p> {{ lookup('file', 'shared_components/thepast.txt') }} </p>"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "index.html"
+        path: "/var/www/html/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
         marker_begin: "thepresent"
         marker_end: "thepresentend"
@@ -59,7 +60,7 @@
         block: " <p> {{ lookup('file', 'shared_components/thepresent.txt') }} </p>"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "index.html"
+        path: "/var/www/html/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
         marker_begin: "thefuture"
         marker_end: "thefutureend"
@@ -69,9 +70,10 @@
       read_csv:
         path: shared_components/primary_news.csv
       register: primarynews
+      delegate_to: localhost
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "index.html"
+        path: "/var/www/html/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Title}}-->"
         marker_begin: "primarynews"
         marker_end: "primarynewsend"
@@ -100,9 +102,10 @@
         delimiter: "|"
         path: shared_components/varsitycoaches.csv
       register: varsitycoaches
+      delegate_to: localhost
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "varsity.html"
+        path: "/var/www/html/varsity.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "varsitycoaches"
         marker_end: "varsitycoachesend"
@@ -126,9 +129,10 @@
         delimiter: "|"
         path: shared_components/freshmencoaches.csv
       register: freshmencoaches
+      delegate_to: localhost
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "freshman.html"
+        path: "/var/www/html/freshman.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "freshmencoaches"
         marker_end: "freshmencoachesend"
@@ -152,9 +156,10 @@
         delimiter: "|"
         path: shared_components/sixthgradecoaches.csv
       register: sixthgradecoaches
+      delegate_to: localhost
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "sixthgrade.html"
+        path: "/var/www/html/sixthgrade.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "somecoachstart"
         marker_end: "somecoachesend"
@@ -178,9 +183,10 @@
         delimiter: "|"
         path: shared_components/seventhandeighthcoaches.csv
       register: seventhandeighthcoaches
+      delegate_to: localhost
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "seventhandeighthgrade.html"
+        path: "/var/www/html/seventhandeighthgrade.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "seventhandeighthcoaches"
         marker_end: "seventhandeighthcoachesend"
@@ -204,9 +210,10 @@
         delimiter: "|"
         path: shared_components/nineandtenyearoldscoaches.csv
       register: nineandtenyearoldscoaches
+      delegate_to: localhost
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
-        path: "nineandtenyearold.html"
+        path: "/var/www/html/nineandtenyearold.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "nineandtenyearoldscoaches"
         marker_end: "nineandtenyearoldscoachesend"
