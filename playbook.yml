@@ -11,9 +11,9 @@
         src: "{{ item }}"
         dest: /var/www/html
       with_fileglob: 
-        - "6thgrade.html"
-        - "7thand8thgrade.html"
-        - "9and10yearold.html"
+        - "sixthgrade.html"
+        - "seventhandeighthgrade.html"
+        - "nineandtenyearold.html"
         - "facilities.html"
         - "freshman.html"
         - "index.html"
