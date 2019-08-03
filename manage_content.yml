@@ -2,6 +2,9 @@
 # Playbook to update apache after updates to website
 #
 - hosts: chsservers
+  remote_user: jenkins
+  become: yes
+  become_user: root
   tasks:
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       blockinfile:
@@ -12,18 +15,18 @@
         insertafter: "<body>"
         block: "{{ lookup('file', 'shared_components/navbar.html') }}"
       with_items:
-        - "/var/www/html/sixthgrade.html"
-        - "/var/www/html/seventhandeighthgrade.html"
-        - "/var/www/html/nineandtenyearold.html"
-        - "/var/www/html/facilities.html"
-        - "/var/www/html/freshman.html"
-        - "/var/www/html/index.html"
-        - "/var/www/html/news.html"
-        - "/var/www/html/schedule.html"
-        - "/var/www/html/seasonticket.html"
-        - "/var/www/html/sponsors.html"
-        - "/var/www/html/swag.html"
-        - "/var/www/html/varsity.html"
+        - /var/www/html/sixthgrade.html
+        - /var/www/html/seventhandeighthgrade.html
+        - /var/www/html/nineandtenyearold.html
+        - /var/www/html/facilities.html
+        - /var/www/html/freshman.html
+        - /var/www/html/index.html
+        - /var/www/html/news.html
+        - /var/www/html/schedule.html
+        - /var/www/html/seasonticket.html
+        - /var/www/html/sponsors.html
+        - /var/www/html/swag.html
+        - /var/www/html/varsity.html
     - name: Read users from CSV file and return a dictionary
       read_csv:
         path: shared_components/varsity_schedule.csv
