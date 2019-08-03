@@ -6,6 +6,13 @@
   become: yes
   become_user: root
   tasks:
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+    blockinfile:
+      path: index.html
+      marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+      marker_begin: "navbar"
+      marker_end: "navbarend"
+      block: "{{ lookup('file', 'navbar.html') }}"
     - name: Copy html web pages and content to apache directory
       copy:
         src: "{{ item }}"
