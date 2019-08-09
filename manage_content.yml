@@ -76,6 +76,28 @@
       become: yes
       become_user: root
       blockinfile:
+        path: "/var/www/html/schedule.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "varsityschedule"
+        marker_end: "varsityscheduleend"
+        insertafter: "                                        <h4>Varsity Football Schedule</h4>
+                                        <p><table style="color:black;">
+                                          <tbody>
+                                            <tr>
+                                              <th>Date</th>
+                                              <th>Time</th>
+                                              <th>Location</th>
+                                            </tr>"
+        block: "<tr>
+									<td>{{item.Date}}</td>
+									<td>{{item.Time}}</td>
+									<td>{{item.Location}}</td>
+								</tr>"
+      with_items: "{{varsityschedule.list}}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
         path: "/var/www/html/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
         marker_begin: "thepast"
