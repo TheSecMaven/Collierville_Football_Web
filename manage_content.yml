@@ -81,7 +81,7 @@
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
         insertafter: "                                        <h4>Varsity Football Schedule</h4>
-                                        <p><table style="color:black;">
+                                        <p><table style=\"color:black;\">
                                           <tbody>
                                             <tr>
                                               <th>Date</th>
@@ -103,7 +103,7 @@
         marker_begin: "varsityscheduleonpage"
         marker_end: "varsityscheduleendonpage"
         insertafter: "<div class="row mb-2 rowcenter">
-					<p><table style="color:black;">
+					<p><table style=\"color:black;\">
 						<tbody>
 						  <tr>
 							<th>Date</th>
