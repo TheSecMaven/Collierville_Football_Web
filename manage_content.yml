@@ -55,7 +55,17 @@
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
-        insertbefore: "</tbody>"
+        insertbefore: "<h4>Varsity Football Schedule</h4>
+                                                  <p><table style=\"color:black;\">
+                                                    <tbody>
+                                                      <tr>
+                                                        <th>Date</th>
+                                                        <th>Time</th>
+                                                        <th>Location</th>
+                                                      </tr>
+
+
+                                                    </tbody>"
         block: "<tr>
 									<td>{{item.Date}}</td>
 									<td>{{item.Time}}</td>
