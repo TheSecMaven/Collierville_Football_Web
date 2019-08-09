@@ -55,17 +55,7 @@
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
-        insertafter: "<h4>Varsity Football Schedule</h4>
-                                                  <p><table style=\"color:black;\">
-                                                    <tbody>
-                                                      <tr>
-                                                        <th>Date</th>
-                                                        <th>Time</th>
-                                                        <th>Location</th>
-                                                      </tr>
-
-
-                                                    </tbody>"
+        insertafter: "<!-- begin Varsity Schedule -->"
         block: "<tr>
 									<td>{{item.Date}}</td>
 									<td>{{item.Time}}</td>
@@ -80,14 +70,7 @@
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
-        insertafter: "                                        <h4>Varsity Football Schedule</h4>
-                                        <p><table style=\"color:black;\">
-                                          <tbody>
-                                            <tr>
-                                              <th>Date</th>
-                                              <th>Time</th>
-                                              <th>Location</th>
-                                            </tr>"
+        insertafter: "<!-- begin Varsity Schedule -->"
         block: "<tr>
 									<td>{{item.Date}}</td>
 									<td>{{item.Time}}</td>
