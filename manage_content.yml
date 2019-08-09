@@ -55,7 +55,7 @@
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
-        insertbefore: "<h4>Varsity Football Schedule</h4>
+        insertafter: "<h4>Varsity Football Schedule</h4>
                                                   <p><table style=\"color:black;\">
                                                     <tbody>
                                                       <tr>
