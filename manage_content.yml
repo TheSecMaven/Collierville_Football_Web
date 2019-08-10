@@ -55,7 +55,7 @@
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
-        insertbefore: "</tbody>"
+        insertafter: "<!-- begin Varsity Schedule -->"
         block: "<tr>
 									<td>{{item.Date}}</td>
 									<td>{{item.Time}}</td>
@@ -85,7 +85,7 @@
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityscheduleonpage"
         marker_end: "varsityscheduleendonpage"
-        insertafter: "<!-- begin Varsity Schedule -->"
+        insertafter: "<!-- begin Varsity Schedule on page-->"
         block: "<tr>
 									<td>{{item.Date}}</td>
 									<td>{{item.Time}}</td>
