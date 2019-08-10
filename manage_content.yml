@@ -40,7 +40,7 @@
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
-        insertbefore: "</tbody>"
+        insertbefore: "<!-- begin Varsity Schedule -->"
         block: "<tr>
 									<td>{{item.Date}}</td>
 									<td>{{item.Time}}</td>
@@ -81,18 +81,11 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/schedule.html"
+        path: "/var/www/html/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityscheduleonpage"
         marker_end: "varsityscheduleendonpage"
-        insertafter: "<div class=\"row mb-2 rowcenter\">
-					<p><table style=\"color:black;\">
-						<tbody>
-						  <tr>
-							<th>Date</th>
-							<th>Time</th>
-							<th>Location</th>
-						  </tr>"
+        insertafter: "<!-- begin Varsity Schedule on page-->"
         block: "<tr>
 									<td>{{item.Date}}</td>
 									<td>{{item.Time}}</td>
