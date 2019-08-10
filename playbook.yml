@@ -39,3 +39,7 @@
       copy:
         src: js/
         dest: /var/www/html/js/
+    - name: Copy html web pages and content to apache directory
+      copy:
+        src: shared_components/
+        dest: /var/www/html/shared_components/
