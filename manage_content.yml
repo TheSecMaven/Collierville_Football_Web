@@ -298,7 +298,7 @@
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "freshmenscheduleschedule"
         marker_end: "freshmenschedulescheduleend"
-        insertafter: "<!-- begin Freshman Schedule-->"
+        insertafter: "<!-- begin Freshman Schedule -->"
         block: "<tr>
 									<td>{{item.Date}}</td>
 									<td>{{item.Time}}</td>
@@ -313,7 +313,7 @@
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "freshmenscheduleschedule"
         marker_end: "freshmenschedulescheduleend"
-        insertafter: "<!-- begin Freshman Schedule-->"
+        insertafter: "<!-- begin Freshman Schedule -->"
         block: "<tr>
 									<td>{{item.Date}}</td>
 									<td>{{item.Time}}</td>
