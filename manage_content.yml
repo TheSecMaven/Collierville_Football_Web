@@ -320,3 +320,18 @@
 									<td>{{item.Location}}</td>
 								</tr>"
       with_items: "{{freshmenschedule.list}}"
+    - name: Read users from CSV file and return a dictionary
+      command: "ls shared_components"
+      register: shared_components_out
+      delegate_to: localhost
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/self-service.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item}}-->"
+        marker_begin: "selfservicebegin"
+        marker_end: "selfserviceend"
+        insertafter: "<!-- Begin Management things-->"
+        block: "<li class=\"list-item\">  <a href=\"shared_components\\{{item}}\" target=\"_blank\">{{item}}</a> </li>"
+      with_items: "{{shared_components_out.stdout_lines}}"
