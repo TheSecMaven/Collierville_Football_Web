@@ -103,6 +103,7 @@ padding: 0;
     top: 140%;
 
 }
+
   .video-container {
     height: 100vh;
   }
@@ -222,7 +223,16 @@ h1{
     left: 5%;
     transform: translate(-5%, -5%);
 }
+.centeredaltvarsity {
+  color:#722D3C;
+    position: absolute;
+    width:100%;
+    top: 120%;
+    left: 5%;
+    transform: translate(-3%, -3%);
 
+
+}
 .centeredaltschedule {
   color:#722D3C;
       position: absolute;
