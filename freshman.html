@@ -1,260 +1,259 @@
 <!DOCTYPE html>
-<html lang="en" >
-  <head>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>CHS Football</title>
-      <!-- Compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css'>
-          <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
-            <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
-              <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-                  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-                    <link rel="stylesheet" href="css/style.css">
-                    </head>
-                    <body>
-                 
-                                    <!-- End side nav bar -->
+    <title>CHS Football</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-                                    <!-- start Background image -->
-                                    <div class="overall">
-                                     <section class="video-container2">
-                                     <img style="top:7%;" src="imgs/freshman.jpg">
-                                      </section>
-                                      <!-- end backg
-                                      
+<body>
+
+    <!-- End side nav bar -->
+
+    <!-- start Background image -->
+    <div class="overall">
+        <section class="video-container2">
+            <img style="top:7%;" src="imgs/freshman.jpg">
+        </section>
+        <!-- end backg
+
                                       <!-- end background image -->
-                                      <!-- MODALS FOR ALL THE COACHES -->
-                                       <div id="playerroster" style="overflow-y:scroll" class="modal">
-                                                <div class="modal-content">
-                                                  <h4>Player Roster</h4>
-                                                  <p>
-                                                  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-                                                  
-                                                  <table id="playertable" style="color:black;">
-                                                      <tr>
-                                                        <th>#</th>
-                                                        <th>Name</th>
-                                                        <th>Class</th>
-                                                        <th>Position</th>
-                                                        <th>Height</th>
-                                                        <th>Weight</th>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>3</td>
-                                                        <td>Justin Stonework</td>
-                                                        <td>JR</td>
-                                                        <td>WR</td>
-                                                        <td>5'5''</td>
-                                                        <td>155</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>4</td>
-                                                        <td>Coach O Neill</td>
-                                                        <td>JR</td>
-                                                        <td>WR</td>
-                                                        <td>5'5''</td>
-                                                        <td>100</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                      </tr>
-                                         
+        <!-- MODALS FOR ALL THE COACHES -->
+        <div id="playerroster" style="overflow-y:scroll" class="modal">
+            <div class="modal-content">
+                <h4>Player Roster</h4>
+                <p>
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
 
-                                                </table>
-                                                    </p>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-                                                  </div>
-                                                </div>
-                                      <div id="freshmanschedule" style="overflow-y:scroll" class="modal">
-                                                <div class="modal-content">
-                                                  <h4>2019 Freshman Football Schedule</h4>
-                                                  <p><table style="color:black;">
-                                                    <tbody>
-                                                      <tr>
-                                                        <th>Date</th>
-                                                        <th>Time</th>
-                                                        <th>Location</th>
-                                                      </tr>
-      <!-- begin Freshman Schedule -->
+                    <table id="playertable" style="color:black;">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>Position</th>
+                            <th>Height</th>
+                            <th>Weight</th>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Justin Stonework</td>
+                            <td>JR</td>
+                            <td>WR</td>
+                            <td>5'5''</td>
+                            <td>155</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Coach O Neill</td>
+                            <td>JR</td>
+                            <td>WR</td>
+                            <td>5'5''</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
 
+                    </table>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+            </div>
+        </div>
+        <div id="freshmanschedule" style="overflow-y:scroll" class="modal">
+            <div class="modal-content">
+                <h4>2019 Freshman Football Schedule</h4>
+                <p>
+                    <table style="color:black;">
+                        <tbody>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Location</th>
+                            </tr>
+                            <!-- begin Freshman Schedule -->
 
-                                                    </tbody>
+                        </tbody>
 
+                    </table>
+                </p>
 
-                                                  </table>
-                                                    </p>
-                                          
-                                                    </p>
-                                                  </div>
-                                              <div class="modal-footer">
-                                                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-                                                  </div>
-                                                </div>
-                                      <div id="varsitycoach" class="modal">
-                                        <div class="modal-content">
-                                          <h4>Head Coach: Coach O'Neill</h4>
-                                          <p>Email: xxx
-                                            <br>Phone:???
-                                            </p>
-                                          </div>
-                                          <div class="modal-footer">
-                                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-                                          </div>
-                                        </div>
-                                        <div id="freshmancoach" class="modal">
-                                          <div class="modal-content">
-                                            <h4>Head Coach: Coach O'Neill</h4>
-                                            <p>Email: xxx
-                                              <br>Phone:???
-                                              </p>
-                                            </div>
-                                            <div class="modal-footer">
-                                              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-                                            </div>
-                                          </div>
-                                          <div id="7th/8thcoach" class="modal">
-                                            <div class="modal-content">
-                                              <h4>Head Coach: Coach O'Neill</h4>
-                                              <p>Email: xxx
-                                                <br>Phone:???
-                                                </p>
-                                              </div>
-                                              <div class="modal-footer">
-                                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-                                              </div>
-                                            </div>
-                                            
-                                              <div id="6thcoach" class="modal">
-                                                <div class="modal-content">
-                                                  <h4>Head Coach: Coach O'Neill</h4>
-                                                  <p>Email: xxx
-                                                    <br>Phone:???
-                                                    </p>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-                                                  </div>
-                                                </div>
-                                                <div id="youngercoach" class="modal">
-                                                  <div class="modal-content">
-                                                    <h4>Head Coach: Coach O'Neill</h4>
-                                                    <p>Email: xxx
-                                                      <br>Phone:???
-                                                      </p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-                                                    </div>
-                                                  </div>
-                                                  <!-- END MODALS -->
-                                                  <!-- Social Media Fixed Buttons-->
-                                                  <div class="fixed-action-btn">
-                                                    <a href="sass.html">
-                                                      <i class="fab fa-twitter circle-icon fa-2x"></i>
-                                                    </a>
-                                                    <a href="sass.html">
-                                                      <i class="fab fa-instagram circle-icon fa-2x"></i>
-                                                    </a>
-                                                    <a href="sass.html">
-                                                      <i class="fab fa-facebook-f circle-icon fa-2x"></i>
-                                                    </a>
-                                                  </div>
-                                                  <!-- END FIXED BUTTONS -->
-                                                  <div class="overall">
-                                                    <div class="centeredalt" style="color:white;">
-                                                      <h1>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+            </div>
+        </div>
+        <div id="varsitycoach" class="modal">
+            <div class="modal-content">
+                <h4>Head Coach: Coach O'Neill</h4>
+                <p>Email: xxx
+                    <br>Phone:???
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+            </div>
+        </div>
+        <div id="freshmancoach" class="modal">
+            <div class="modal-content">
+                <h4>Head Coach: Coach O'Neill</h4>
+                <p>Email: xxx
+                    <br>Phone:???
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+            </div>
+        </div>
+        <div id="7th/8thcoach" class="modal">
+            <div class="modal-content">
+                <h4>Head Coach: Coach O'Neill</h4>
+                <p>Email: xxx
+                    <br>Phone:???
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+            </div>
+        </div>
+
+        <div id="6thcoach" class="modal">
+            <div class="modal-content">
+                <h4>Head Coach: Coach O'Neill</h4>
+                <p>Email: xxx
+                    <br>Phone:???
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+            </div>
+        </div>
+        <div id="youngercoach" class="modal">
+            <div class="modal-content">
+                <h4>Head Coach: Coach O'Neill</h4>
+                <p>Email: xxx
+                    <br>Phone:???
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+            </div>
+        </div>
+        <!-- END MODALS -->
+        <!-- Social Media Fixed Buttons-->
+        <div class="fixed-action-btn">
+            <a href="sass.html">
+                <i class="fab fa-twitter circle-icon fa-2x"></i>
+            </a>
+            <a href="sass.html">
+                <i class="fab fa-instagram circle-icon fa-2x"></i>
+            </a>
+            <a href="sass.html">
+                <i class="fab fa-facebook-f circle-icon fa-2x"></i>
+            </a>
+        </div>
+        <!-- END FIXED BUTTONS -->
+        <div class="overall">
+            <div class="centeredalt" style="color:white;">
+                <h1>
                                                         <center style="color:#722D3C;text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;"> Freshman Football </center></h1>
 
-                                                <div class="spacer">
-                                                <div class="spacer2"></div>
-                                                <div class="rowcenter">
-                                                <div class="row">
-                                                  
-<div class="col pl-3">
-  <a style="background-color:#722D3C;" class="btn modal-trigger" href="#freshmanschedule"><font size="+1">Freshman </font><i class="fa fa-calendar fa-2x" aria-hidden="true"></i></a>
-  </div>
-<div class="col pl-3">
-  <a style="background-color:#722D3C;" class=" btn modal-trigger" href="#playerroster"><font size="+1">Player Roster </font></a>
-</div>
+                <div class="spacer">
+                    <div class="spacer2"></div>
+                    <div class="rowcenter">
+                        <div class="row">
 
-</div>
-</div>
+                            <div class="col pl-3">
+                                <a style="background-color:#722D3C;" class="btn modal-trigger" href="#freshmanschedule"><font size="+1">Freshman </font><i class="fa fa-calendar fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col pl-3">
+                                <a style="background-color:#722D3C;" class=" btn modal-trigger" href="#playerroster"><font size="+1">Player Roster </font></a>
+                            </div>
 
-                                                </div>
+                        </div>
+                    </div>
 
-    <hr class="featurette-divider">
-    <div class="row featurette">
-          <div class="col-md-12">
-            <h2 class="featurette-heading pl-3">Coaches</h2>
-           
-          </div>
-        </div>
-<!-- Begin Coach Bios-->
+                </div>
 
-        
-                                                  </div>
-                                                  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                                                  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js'></script>
-                                                  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'></script>
-                                                  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'></script>
-                                                  <script  src="js/index.js"></script>
-                                                  <script>
-                                                    $(document).ready(function(){
-                                                            $('.button-collapse').sideNav({
-                                                                menuWidth: 300, // Default is 300
-                                                                edge: 'left', // Choose the horizontal origin
-                                                                closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                                                                draggable: true // Choose whether you can drag to open on touch screens
-                                                              }
-                                                            );
+                <hr class="featurette-divider">
+                <div class="row featurette">
+                    <div class="col-md-12">
+                        <h2 class="featurette-heading pl-3">Coaches</h2>
 
- document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, options);
-  });
+                    </div>
+                </div>
+                <!-- Begin Coach Bios-->
 
-  // Or with jQuery
+            </div>
+            <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js'></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'></script>
+            <script src="js/index.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('.button-collapse').sideNav({
+                        menuWidth: 300, // Default is 300
+                        edge: 'left', // Choose the horizontal origin
+                        closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                        draggable: true // Choose whether you can drag to open on touch screens
+                    });
 
-  $('.dropdown-trigger').dropdown();
-                                                            // START OPEN
-                                                          });
-                                                        </script>
-                                                </body>
-                                              </html>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var elems = document.querySelectorAll('.dropdown-trigger');
+                        var instances = M.Dropdown.init(elems, options);
+                    });
+
+                    // Or with jQuery
+
+                    $('.dropdown-trigger').dropdown();
+                    // START OPEN
+                });
+            </script>
+</body>
+
+</html>
