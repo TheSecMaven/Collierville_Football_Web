@@ -157,7 +157,7 @@
       with_items: "{{primarynews.list}}"
     - name: Read users from CSV file and return a dictionary
       read_csv:
-        delimiter: "|"
+        delimiter: ","
         path: shared_components/varsitycoaches.csv
       register: varsitycoaches
       delegate_to: localhost
@@ -186,7 +186,7 @@
       with_items: "{{varsitycoaches.list}}"
     - name: Read users from CSV file and return a dictionary
       read_csv:
-        delimiter: "|"
+        delimiter: ","
         path: shared_components/freshmencoaches.csv
       register: freshmencoaches
       delegate_to: localhost
@@ -215,7 +215,7 @@
       with_items: "{{freshmencoaches.list}}"
     - name: Read users from CSV file and return a dictionary
       read_csv:
-        delimiter: "|"
+        delimiter: ","
         path: shared_components/sixthgradecoaches.csv
       register: sixthgradecoaches
       delegate_to: localhost
@@ -244,7 +244,7 @@
       with_items: "{{sixthgradecoaches.list}}"
     - name: Read users from CSV file and return a dictionary
       read_csv:
-        delimiter: "|"
+        delimiter: ","
         path: shared_components/seventhandeighthcoaches.csv
       register: seventhandeighthcoaches
       delegate_to: localhost
@@ -273,7 +273,7 @@
       with_items: "{{seventhandeighthcoaches.list}}"
     - name: Read users from CSV file and return a dictionary
       read_csv:
-        delimiter: "|"
+        delimiter: ","
         path: shared_components/nineandtenyearoldscoaches.csv
       register: nineandtenyearoldscoaches
       delegate_to: localhost
