@@ -3,7 +3,8 @@
 # For example, you can have one property to handle comment submission and
 # another one to handle posts.
 varsityschedule:
-  allowedFields: ["name","list"]
+  allowedFields: ["name", "email", "url", "message"]
+
   branch: "master"
   commitMessage: "Add Staticman data"
   filename: "varsityschedule"
