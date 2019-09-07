@@ -7,7 +7,7 @@ varsityschedule:
 
   branch: "master"
   commitMessage: "Add Staticman data"
-  filename: "varsityschedule"
+  filename: "schedule-{@timestamp}"
   format: "json"
   moderation: true
-  path: "_data/schedule"
+  path: "varsity"
