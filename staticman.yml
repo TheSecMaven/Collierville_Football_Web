@@ -2,7 +2,7 @@
 # different config blocks for different sections of your site.
 # For example, you can have one property to handle comment submission and
 # another one to handle posts.
-comments:
+varsityschedule:
   # (*) REQUIRED
   #
   # Names of the fields the form is allowed to submit. If a field that is
@@ -21,11 +21,11 @@ comments:
   # (*) REQUIRED
   #
   # Destination path (filename) for the data files. Accepts placeholders.
-  filename: "entry{@timestamp}"
+  filename: "varsityschedule"
 
   # The format of the generated data files. Accepted values are "json", "yaml"
   # or "frontmatter"
-  format: "yaml"
+  format: "frontmatter"
 
   # List of fields to be populated automatically by Staticman and included in
   # the data file. Keys are the name of the field. The value can be an object
@@ -65,7 +65,7 @@ comments:
   # (*) REQUIRED
   #
   # Destination path (directory) for the data files. Accepts placeholders.
-  path: "_data/comments/{options.slug}"
+  path: "_data/comments"
 
   # Names of required fields. If any of these isn't in the request or is empty,
   # an error will be thrown.
