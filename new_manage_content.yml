@@ -336,3 +336,78 @@
       file:
         path: /var/www/html/new
         state: absent
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/sevenandeightyearold/
+        patterns: 'schedule-*.json'
+      register: sevenandeightyearoldschedule
+    - name: Get latest file
+      set_fact:
+        sevenandeightyearoldschedulefile: "{{ sevenandeightyearoldschedule.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{sevenandeightyearoldschedulefile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{sevenandeightyearoldschedulefile.path}}"
+      register: sevenandeightyearoldschedulejson
+    - name: Get foo value.
+      set_fact:
+        sevenandeightyearoldschedule: "{{ (sevenandeightyearoldschedulejson.stdout | from_json).data }}"
+    - name: debug
+      debug:
+        msg: "{{sevenandeightyearoldschedule}}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/sevenandeightyearoldschedule.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "varsityschedule"
+        marker_end: "varsityschedule"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Date]\" value=\"{{item.Date}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Time]\" value=\"{{item.Time}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Location]\" value=\"{{item.Location}}\">
+      </span><br><br>"
+      with_items: "{{sevenandeightyearoldschedule}}"
+      loop_control:
+        index_var: my_idx
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/sevenandeightyearold/
+        patterns: 'coaches-*.json'
+      register: sevenandeightyearoldcoaches
+    - name: Get latest file
+      set_fact:
+        sevenandeightyearoldcoachesfile: "{{ sevenandeightyearoldcoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{sevenandeightyearoldcoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{sevenandeightyearoldcoachesfile.path}}"
+      register: sevenandeightyearoldcoachesjson
+    - name: Get foo value.
+      set_fact:
+        sevenandeightyearoldcoaches: "{{ (sevenandeightyearoldcoachesjson.stdout | from_json).data }}"
+    - name: debug
+      debug:
+        msg: "{{sevenandeightyearoldcoaches}}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/sevenandeightyearoldcoaches.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
+        marker_begin: "freshmanschedule"
+        marker_end: "freshmanscheduleend"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][name]\" value=\"{{item.name}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][title]\" value=\"{{item.title}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type=\"text\" name=\"fields[data][{{my_idx}}][bio]\" value=\"{{item.bio}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][imagelocation]\" value=\"{{item.imagelocation}}\">
+      </span><br><br>"
+      with_items: "{{sevenandeightyearoldcoaches}}"
+      loop_control:
+        index_var: my_idx

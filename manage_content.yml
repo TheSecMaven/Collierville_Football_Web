@@ -531,3 +531,78 @@
         insertafter: "<!-- Begin Management things-->"
         block: "<li class=\"list-item\">  <a href=\"shared_components\\{{item}}\" target=\"_blank\">{{item}}</a> </li>"
       with_items: "{{shared_components_out.stdout_lines}}"
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/sevenandeightyearold/
+        patterns: 'schedule-*.json'
+      register: sevenandeightyearoldschedule
+    - name: Get latest file
+      set_fact:
+        sevenandeightyearoldschedulefile: "{{ sevenandeightyearoldschedule.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{sevenandeightyearoldschedulefile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{sevenandeightyearoldschedulefile.path}}"
+      register: sevenandeightyearoldschedulefilejson
+    - name: Get foo value.
+      set_fact:
+        sevenandeightyearoldschedule: "{{ (sevenandeightyearoldschedulefilejson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/new/sevenandeightyearolds.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "freshmenscheduleschedule"
+        marker_end: "freshmenschedulescheduleend"
+        insertafter: "<!-- begin sevenandeight Schedule -->"
+        block: "<tr>
+									<td>{{item.Date}}</td>
+									<td>{{item.Time}}</td>
+									<td>{{item.Location}}</td>
+								</tr>"
+      with_items: "{{sevenandeightyearoldschedule}}"
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/sevenandeightyearold/
+        patterns: 'coaches-*.json'
+      register: sevenandeightyearoldcoaches
+    - name: Get latest file
+      set_fact:
+        sevenandeightyearoldcoachesfile: "{{ sevenandeightyearoldcoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{sevenandeightyearoldcoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{sevenandeightyearoldcoachesfile.path}}"
+      register: sevenandeightyearoldcoachesjson
+    - name: Get foo value.
+      set_fact:
+        sevenandeightyearoldcoaches: "{{ (sevenandeightyearoldcoachesjson.stdout | from_json).data }}"
+    - name: debug
+      debug:
+        msg: "{{sevenandeightyearoldcoaches}}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/new/sevenandeightyearolds.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
+        marker_begin: "varsitycoaches"
+        marker_end: "varsitycoachesend"
+        insertafter: '<!-- Begin Coach Bios-->'
+        block: "<div class=\"row featurette\">
+          <div class=\"col-md-7 order-md-1 order-2\">
+            <h2 class=\"featurette-heading pl-3 \">{{item.name}}
+            <br><span class=\"text-muted\">{{item.title}}</span></h2>
+            <p class=\"lead pl-3\">{{item.bio}}</p>
+          </div>
+          <div class=\"col-md-4 ml-3 order-md-2 order-1\">
+            <div class=\"column\">
+              <div class=\"row\">
+            <img class=\"img-fluid mx-auto img-thumbnail\"  style=\"max-width:225px; max-height:225px;\" src=\"{{item.imagelocation}}\" alt=\"Generic placeholder image\">
+            </div>
+          </div></div>
+        </div>"
+      with_items: "{{varsitycoaches}}"

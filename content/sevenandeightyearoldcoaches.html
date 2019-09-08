@@ -1,0 +1,38 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<form method="POST" id="form" action="http://163.172.159.83/v2/entry/mkkeffeler/Collierville_Football_Web/master/sevenandeightyearoldcoaches">
+   <input name="options[redirect]" type="hidden" value="http://chsdragonfootball.com">
+   <h3>7 and 8 Year Old Coaches list</h3>
+   <br><label for="name">Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   <label for="Date">Title</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   <label for="Date">Bio</label>
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   &nbsp;&nbsp;&nbsp;&nbsp;
+   <label for="Date">Image Location</label>
+
+   <div id="dynamic_form">
+    <!-- Input Form-->
+   </div>
+   <input type="submit">
+</form>
+<div id="member_info"></div>
+<script>
+   $(document).ready(function(){       
+   
+       $('button').click(function(){
+           // Add new form fields
+           $('#dynamic_form').append('<input type="text" name="fields[Date]">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="fields[Time]">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="fields[Location]"></span><br><br>');
+       });
+   });
+</script>
