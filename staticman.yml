@@ -42,3 +42,75 @@ nineandtencoaches:
   format: "json"
   moderation: true
   path: "staticman/nineandten"
+seventhgradeschedule:
+  allowedFields: ["data","Date", "Time", "Location"]
+  branch: "master"
+  commitMessage: "Update 7th Grade Schedule"
+  filename: "schedule-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/seven"
+seventhgradecoaches:
+  allowedFields: ["data","imagelocation", "bio", "name","title"]
+  branch: "master"
+  commitMessage: "Update 7th Grade Coaches"
+  filename: "coaches-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/seven"
+eighthgradeschedule:
+  allowedFields: ["data","Date", "Time", "Location"]
+  branch: "master"
+  commitMessage: "Update 8th Grade Schedule"
+  filename: "schedule-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/eight"
+eighthgradecoaches:
+  allowedFields: ["data","imagelocation", "bio", "name","title"]
+  branch: "master"
+  commitMessage: "Update 8th Grade Coaches"
+  filename: "coaches-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/eight"
+newnews:
+  allowedFields: ["title","imagelocation", "paragraph1", "paragraph2"]
+  branch: "master"
+  commitMessage: "Update News Entries"
+  filename: "newsentry-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/news"
+nineandtencoaches:
+  allowedFields: ["data","imagelocation", "bio", "name","title"]
+  branch: "master"
+  commitMessage: "Update 9 and 10 Year Old Coaches"
+  filename: "coaches-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/nineandten"
+nineandtenschedule:
+  allowedFields: ["data","Date", "Time", "Location"]
+  branch: "master"
+  commitMessage: "Update 9 and 10 Year Old Schedule"
+  filename: "schedule-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/nineandten"
+sevenandeightyearoldcoaches:
+  allowedFields: ["data","imagelocation", "bio", "name","title"]
+  branch: "master"
+  commitMessage: "Update 7 & 8 year Old Coaches"
+  filename: "coaches-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/sevenandeightyearold"
+sevenandeightyearoldschedule:
+  allowedFields: ["data","Date", "Time", "Location"]
+  branch: "master"
+  commitMessage: "Update 7 & 8 year Old Schedule"
+  filename: "schedule-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/sevenandeightyearold"

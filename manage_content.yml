@@ -620,25 +620,30 @@
     - name: Read JSON file (can also be a variable).
       shell: "cat {{newsentriesfile.path}}"
       register: newsentriesjson
+    - name: Get latest file
+      set_fact:
+        newstitle: "{{ (newsentriesjson | from_json).title }}"
+        newsparagraph1: "{{ (newsentriesjson | from_json).paragraph1 }}"
+        newsparagraph2: "{{ (newsentriesjson | from_json).paragraph2 }}"
+        newsimagelocation: "{{ (newsentriesjson | from_json).imagelocation }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
       blockinfile:
         path: "/var/www/html/new/news.html"
-        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
-        marker_begin: "{{item.title}} begin"
-        marker_end: "{{item.title}} end"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{newstitle}}-->"
+        marker_begin: "{{newstitle}} begin"
+        marker_end: "{{newstitle}} end"
         insertafter: '<!--  Add New Entries Below Here-->'
         block: "<div class=\"row featurette ml-2\">
   <div class=\"col-md-12 order-md-2 \"> 
-          <h4 class=\"featurette-heading order-md-2 pl-2\">{{item.title}}</h4><p class=\"lead\">
+          <h4 class=\"featurette-heading order-md-2 pl-2\">{{newstitle}}</h4><p class=\"lead\">
           <ul class=\"newsstuff ml-5\">
-            <li>{{item.paragraph1}}<br><br>
-                {{item.paragraph2}}
+            <li>{{newsparagraph1}}<br><br>
+                {{newsparagraph2}}
                </li>
-         <li>  <img src=\"{{item.imagelocation}}\" style=\"max-width:400px;max-height: 200px;height:auto;width:auto;background-color: black;\"></li>
+         <li>  <img src=\"{{newsimagelocation}}\" style=\"max-width:400px;max-height: 200px;height:auto;width:auto;background-color: black;\"></li>
           </ul>
          </p>
   </div>
 </div>"
-      with_items: "{{newsentriesjson}}"
