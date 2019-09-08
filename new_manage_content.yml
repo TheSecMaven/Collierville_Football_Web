@@ -192,3 +192,141 @@
       with_items: "{{nineandtencoachesjsondata}}"
       loop_control:
         index_var: my_idx
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/eight/
+        patterns: 'schedule-*.json'
+      register: eightschedule
+    - name: Get latest file
+      set_fact:
+        eightschedulefile: "{{ eightschedule.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{eightschedulefile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{eightschedulefile.path}}"
+      register: eightschedulejson
+    - name: Get foo value.
+      set_fact:
+        eightscheduledata: "{{ (eightschedulejson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/8thgradeschedule.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "freshmanschedule"
+        marker_end: "freshmanscheduleend"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Date]\" value=\"{{item.Date}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Time]\" value=\"{{item.Time}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Location]\" value=\"{{item.Location}}\">
+      </span><br><br>"
+      with_items: "{{eightscheduledata}}"
+      loop_control:
+        index_var: my_idx
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/seven/
+        patterns: 'schedule-*.json'
+      register: sevenschedule
+    - name: Get latest file
+      set_fact:
+        sevenschedulefile: "{{ sevenschedule.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{sevenschedulefile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{sevenschedulefile.path}}"
+      register: sevenschedulejson
+    - name: Get foo value.
+      set_fact:
+        sevenscheduledata: "{{ (sevenschedulejson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/7thgradeschedule.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "freshmanschedule"
+        marker_end: "freshmanscheduleend"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Date]\" value=\"{{item.Date}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Time]\" value=\"{{item.Time}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Location]\" value=\"{{item.Location}}\">
+      </span><br><br>"
+      with_items: "{{sevenscheduledata}}"
+      loop_control:
+        index_var: my_idx
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/seven/
+        patterns: 'coaches-*.json'
+      register: sevencoaches
+    - name: Get latest file
+      set_fact:
+        sevencoachesfile: "{{ sevencoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{sevencoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{sevencoachesfile.path}}"
+      register: sevencoachesjson
+    - name: Get foo value.
+      set_fact:
+        sevencoachesdata: "{{ (sevencoachesjson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/7thgradecoaches.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
+        marker_begin: "freshmanschedule"
+        marker_end: "freshmanscheduleend"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][name]\" value=\"{{item.name}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][title]\" value=\"{{item.title}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type=\"text\" name=\"fields[data][{{my_idx}}][bio]\" value=\"{{item.bio}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][imagelocation]\" value=\"{{item.imagelocation}}\">
+      </span><br><br>"
+      with_items: "{{sevencoachesdata}}"
+      loop_control:
+        index_var: my_idx
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/eight/
+        patterns: 'coaches-*.json'
+      register: eightcoaches
+    - name: Get latest file
+      set_fact:
+        eightcoachesfile: "{{ eightcoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{eightcoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{eightcoachesfile.path}}"
+      register: eightcoachesjson
+    - name: Get foo value.
+      set_fact:
+        eightcoachesdata: "{{ (eightcoachesjson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/8thgradecoaches.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
+        marker_begin: "freshmanschedule"
+        marker_end: "freshmanscheduleend"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][name]\" value=\"{{item.name}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][title]\" value=\"{{item.title}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type=\"text\" name=\"fields[data][{{my_idx}}][bio]\" value=\"{{item.bio}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][imagelocation]\" value=\"{{item.imagelocation}}\">
+      </span><br><br>"
+      with_items: "{{eightcoachesdata}}"
+      loop_control:
+        index_var: my_idx

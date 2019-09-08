@@ -12,7 +12,8 @@
         dest: /var/www/html
       with_fileglob: 
         - "sixthgrade.html"
-        - "seventhandeighthgrade.html"
+        - "seventhgrade.html"
+        - "eighthgrade.html"
         - "nineandtenyearold.html"
         - "facilities.html"
         - "freshman.html"

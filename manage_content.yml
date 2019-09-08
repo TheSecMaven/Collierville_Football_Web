@@ -10,7 +10,8 @@
         dest: /var/www/html
       with_fileglob: 
         - "sixthgrade.html"
-        - "seventhandeighthgrade.html"
+        - "seventhgrade.html"
+        - "eighthgrade.html"
         - "nineandtenyearold.html"
         - "facilities.html"
         - "freshman.html"
@@ -37,7 +38,8 @@
         block: "{{ lookup('file', 'shared_components/navbar.html') }}"
       with_items:
         - /var/www/html/sixthgrade.html
-        - /var/www/html/seventhandeighthgrade.html
+        - /var/www/html/seventhgrade.html
+        - /var/www/html/eighthgrade.html
         - /var/www/html/nineandtenyearold.html
         - /var/www/html/facilities.html
         - /var/www/html/freshman.html
@@ -271,12 +273,23 @@
           </div></div>
         </div>"
       with_items: "{{freshmencoaches}}"
-    - name: Read users from CSV file and return a dictionary
-      read_csv:
-        delimiter: ","
-        path: shared_components/sixthgradecoaches.csv
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/sixthgrade/
+        patterns: 'coaches-*.json'
       register: sixthgradecoaches
-      delegate_to: localhost
+    - name: Get latest file
+      set_fact:
+        sixthgradecoachesfile: "{{ sixthgradecoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{sixthgradecoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{sixthgradecoachesfile.path}}"
+      register: sixthgradecoachesjson
+    - name: Get foo value.
+      set_fact:
+        sixthgradecoaches: "{{ (sixthgradecoachesjson.stdout | from_json).data }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -300,17 +313,28 @@
           </div></div>
         </div>"
       with_items: "{{sixthgradecoaches.list}}"
-    - name: Read users from CSV file and return a dictionary
-      read_csv:
-        delimiter: ","
-        path: shared_components/seventhandeighthcoaches.csv
-      register: seventhandeighthcoaches
-      delegate_to: localhost
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/seven/
+        patterns: 'coaches-*.json'
+      register: sevengradecoaches
+    - name: Get latest file
+      set_fact:
+        sevengradecoachesfile: "{{ sevengradecoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{sevengradecoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{sevengradecoachesfile.path}}"
+      register: sevengradecoachesjson
+    - name: Get foo value.
+      set_fact:
+        sevengradecoaches: "{{ (sevengradecoachesjson.stdout | from_json).data }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/seventhandeighthgrade.html"
+        path: "/var/www/html/seventhgrade.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "seventhandeighthcoaches"
         marker_end: "seventhandeighthcoachesend"
@@ -328,7 +352,47 @@
             </div>
           </div></div>
         </div>"
-      with_items: "{{seventhandeighthcoaches.list}}"
+      with_items: "{{sevengradecoaches.list}}"
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/eight/
+        patterns: 'coaches-*.json'
+      register: eighthgradecoaches
+    - name: Get latest file
+      set_fact:
+        eighthgradecoachesfile: "{{ eighthgradecoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{eighthgradecoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{eighthgradecoachesfile.path}}"
+      register: eighthgradecoachesjson
+    - name: Get foo value.
+      set_fact:
+        eighthgradecoaches: "{{ (eighthgradecoachesjson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/eighthgrade.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
+        marker_begin: "seventhandeighthcoaches"
+        marker_end: "seventhandeighthcoachesend"
+        insertafter: '<!-- Begin Coach Bios-->'
+        block: "<div class=\"row featurette\">
+          <div class=\"col-md-7 order-md-1 order-2\">
+            <h2 class=\"featurette-heading pl-3 \">{{item.name}}
+            <br><span class=\"text-muted\">{{item.title}}</span></h2>
+            <p class=\"lead pl-3\">{{item.bio}}</p>
+          </div>
+          <div class=\"col-md-4 ml-3 order-md-2 order-1\">
+            <div class=\"column\">
+              <div class=\"row\">
+            <img class=\"img-fluid mx-auto img-thumbnail\"  style=\"max-width:225px; max-height:225px;\" src=\"{{item.imagelocation}}\" alt=\"Generic placeholder image\">
+            </div>
+          </div></div>
+        </div>"
+      with_items: "{{eighthgradecoaches.list}}"
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/nineandten/

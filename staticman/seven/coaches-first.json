@@ -1,0 +1,38 @@
+{"data": [
+    {
+      "name": "Gary Miller",
+      "title": "Defensive Coordinator/Linebackers Coach",
+      "bio": "2nd year coaching at Collierville. 3 year football letterman and captain for Arlington High School. Currently attends the University of Memphis.",
+      "imagelocation": "imgs/coaches/nocoachpng.png"
+    },
+    {
+      "name": "Dean Edgar",
+      "title": "Offensive Line/Defensive Line",
+      "bio": "4th year coaching at Collierville. 3 year football letterman at Colllierville High School.",
+      "imagelocation": "imgs/coaches/nocoachpng.png"
+    },
+    {
+      "name": "Tyler Davis",
+      "title": "Wide Receivers/Defensive Backs Coach",
+      "bio": "1st year coaching at Collierville. 3 year football letterman at Collierville High School. Currently attends the University of Memphis.",
+      "imagelocation": "imgs/coaches/nocoachpng.png"
+    },
+    {
+      "name": "Greg Henderson",
+      "title": "Wide Receivers/Defensive Backs Coach",
+      "bio": "1st year coaching at Collierville. Coach Henderson is married to his wife Tiffanee and has 3 kids: Joya (Jr. at U of M), Jordan (Jr. at Collierville High and Varsity WR) and Savannah (5th grade at Sycamore Elementary).",
+      "imagelocation": "imgs/coaches/nocoachpng.png"
+    },
+    {
+      "name": "Dan Holcomb and Jeff Bousson",
+      "title": "Head Coaches",
+      "bio": "TBD",
+      "imagelocation": "imgs/coaches/nocoachpng.png"
+    },
+    {
+      "name": "Ben Hardy",
+      "title": "Head Coach/Offensive Coordinator",
+      "bio": "Entering his 10th year coaching in the middle school league. This is his 2nd year at Collierville after spending 8 years at Arlington.  He has coached in 6 out of 7 championship games since the league created a championship game in 2010. Coach Hardy is married to his wife Stacie and has a son named Landon. 3 year football letterman from Houston High School during 1995-1998.",
+      "imagelocation": "imgs/coaches/nocoachpng.png"
+    }
+  ]}
