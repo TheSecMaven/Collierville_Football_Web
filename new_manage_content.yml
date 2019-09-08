@@ -28,7 +28,7 @@
         path: "/var/www/html/content/varsityschedule.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
-        marker_end: "varsityschedule"
+        marker_end: "varsityscheduleend"
         insertafter: '<!-- Input Form-->'
         block: "<span class=\"member_data\">
         <input type=\"text\" name=\"fields[data][{{my_idx}}][Date]\" value=\"{{item.Date}}\">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -77,7 +77,7 @@
         path: "/var/www/html/content/freshmanschedule.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "freshmanschedule"
-        marker_end: "freshmanschedule"
+        marker_end: "freshmanscheduleend"
         insertafter: '<!-- Input Form-->'
         block: "<span class=\"member_data\">
         <input type=\"text\" name=\"fields[data][{{my_idx}}][Date]\" value=\"{{item.Date}}\">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -91,7 +91,7 @@
       find:
         paths: /var/www/html/staticman/freshman/
         patterns: 'coaches-*.json'
-      register: freshmanschedule
+      register: freshmancoaches
     - name: Get latest file
       set_fact:
         freshmancoachesfile: "{{ freshmancoaches.files | sort(attribute='mtime',reverse=true) | first }}"
@@ -99,7 +99,7 @@
       debug:
         msg: "{{freshmancoachesfile}}"
     - name: Read JSON file (can also be a variable).
-      shell: "cat {{freshmanschedulefile.path}}"
+      shell: "cat {{freshmancoachesfile.path}}"
       register: freshmancoachesjson
     - name: Get foo value.
       set_fact:
@@ -109,9 +109,9 @@
       become_user: root
       blockinfile:
         path: "/var/www/html/content/freshmancoaches.html"
-        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "freshmanschedule"
-        marker_end: "freshmanschedule"
+        marker_end: "freshmanscheduleend"
         insertafter: '<!-- Input Form-->'
         block: "<span class=\"member_data\">
         <input type=\"text\" name=\"fields[data][{{my_idx}}][name]\" value=\"{{item.name}}\">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -119,14 +119,14 @@
                 <input type=\"text\" name=\"fields[data][{{my_idx}}][bio]\" value=\"{{item.bio}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
         <input type=\"text\" name=\"fields[data][{{my_idx}}][imagelocation]\" value=\"{{item.imagelocation}}\">
       </span><br><br>"
-      with_items: "{{freshmanschedulejsondata}}"
+      with_items: "{{freshmancoachesjsondata}}"
       loop_control:
         index_var: my_idx
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/varsity/
         patterns: 'coaches-*.json'
-      register: varsityschedule
+      register: varsitycoaches
     - name: Get latest file
       set_fact:
         varsitycoachesfile: "{{ varsitycoaches.files | sort(attribute='mtime',reverse=true) | first }}"
@@ -134,7 +134,7 @@
       debug:
         msg: "{{varsitycoachesfile}}"
     - name: Read JSON file (can also be a variable).
-      shell: "cat {{varsityschedulefile.path}}"
+      shell: "cat {{varsitycoachesfile.path}}"
       register: varsitycoachesjson
     - name: Get foo value.
       set_fact:
@@ -144,9 +144,9 @@
       become_user: root
       blockinfile:
         path: "/var/www/html/content/varsitycoaches.html"
-        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
-        marker_begin: "varsityschedule"
-        marker_end: "varsityschedule"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
+        marker_begin: "varsitycoaches"
+        marker_end: "varsitycoachesend"
         insertafter: '<!-- Input Form-->'
         block: "<span class=\"member_data\">
         <input type=\"text\" name=\"fields[data][{{my_idx}}][name]\" value=\"{{item.name}}\">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -154,14 +154,14 @@
                 <input type=\"text\" name=\"fields[data][{{my_idx}}][bio]\" value=\"{{item.bio}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
         <input type=\"text\" name=\"fields[data][{{my_idx}}][imagelocation]\" value=\"{{item.imagelocation}}\">
       </span><br><br>"
-      with_items: "{{varsityschedulejsondata}}"
+      with_items: "{{varsitycoachesjsondata}}"
       loop_control:
         index_var: my_idx
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/nineandten/
         patterns: 'coaches-*.json'
-      register: nineandtenschedule
+      register: nineandtencoaches
     - name: Get latest file
       set_fact:
         nineandtencoachesfile: "{{ nineandtencoaches.files | sort(attribute='mtime',reverse=true) | first }}"
@@ -169,7 +169,7 @@
       debug:
         msg: "{{nineandtencoachesfile}}"
     - name: Read JSON file (can also be a variable).
-      shell: "cat {{nineandtenschedulefile.path}}"
+      shell: "cat {{nineandtencoachesfile.path}}"
       register: nineandtencoachesjson
     - name: Get foo value.
       set_fact:
@@ -179,9 +179,9 @@
       become_user: root
       blockinfile:
         path: "/var/www/html/content/nineandtencoaches.html"
-        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "nineandtenschedule"
-        marker_end: "nineandtenschedule"
+        marker_end: "nineandtenscheduleend"
         insertafter: '<!-- Input Form-->'
         block: "<span class=\"member_data\">
         <input type=\"text\" name=\"fields[data][{{my_idx}}][name]\" value=\"{{item.name}}\">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -189,6 +189,6 @@
                 <input type=\"text\" name=\"fields[data][{{my_idx}}][bio]\" value=\"{{item.bio}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
         <input type=\"text\" name=\"fields[data][{{my_idx}}][imagelocation]\" value=\"{{item.imagelocation}}\">
       </span><br><br>"
-      with_items: "{{nineandtenschedulejsondata}}"
+      with_items: "{{nineandtencoachesjsondata}}"
       loop_control:
         index_var: my_idx

@@ -23,6 +23,8 @@
         - "swag.html"
         - "varsity.html"
         - "management.html"
+      become: yes
+      become_user: root
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -339,11 +341,11 @@
       debug:
         msg: "{{nineandtencoachesfile}}"
     - name: Read JSON file (can also be a variable).
-      shell: "cat {{nineandtenschedulefile.path}}"
+      shell: "cat {{nineandtencoachesfile.path}}"
       register: nineandtenyearoldscoaches
     - name: Get foo value.
       set_fact:
-        nineandtencoachesjsondata: "{{ (nineandtencoachesjson.stdout | from_json).data }}"
+        nineandtencoachesjsondata: "{{ (nineandtenyearoldscoaches.stdout | from_json).data }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -366,7 +368,7 @@
             </div>
           </div></div>
         </div>"
-      with_items: "{{nineandtenyearoldscoaches}}"
+      with_items: "{{nineandtencoachesjsondata}}"
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/freshman/
