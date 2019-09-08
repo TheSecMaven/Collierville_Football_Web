@@ -330,12 +330,6 @@
       with_items: "{{eightcoachesdata}}"
       loop_control:
         index_var: my_idx
-    - name: Execute the command in remote shell; stdout goes to the specified file on the remote.
-      shell: cp /var/www/html/new/* /var/www/html
-    - name: Create a directory if it does not exist
-      file:
-        path: /var/www/html/new
-        state: absent
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/sevenandeightyearold/
@@ -411,3 +405,13 @@
       with_items: "{{sevenandeightyearoldcoaches}}"
       loop_control:
         index_var: my_idx
+    - name: Execute the command in remote shell; stdout goes to the specified file on the remote.
+      shell: cp /var/www/html/new/* /var/www/html
+      become: yes
+      become_user: root
+    - name: Create a directory if it does not exist
+      file:
+        path: /var/www/html/new
+        state: absent
+      become: yes
+      become_user: root

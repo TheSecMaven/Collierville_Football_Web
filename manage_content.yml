@@ -83,10 +83,10 @@
         marker_end: "varsityscheduleend"
         insertafter: "<!-- begin Varsity Schedule-->"
         block: "<tr>
-									<td>{{item.Date}}</td>
-									<td>{{item.Time}}</td>
-									<td>{{item.Location}}</td>
-								</tr>"
+                                    <td>{{item.Date}}</td>
+                                    <td>{{item.Time}}</td>
+                                    <td>{{item.Location}}</td>
+                                </tr>"
       with_items: "{{varsityschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
@@ -98,10 +98,10 @@
         marker_end: "varsityscheduleend"
         insertafter: "<!-- begin Varsity Schedule -->"
         block: "<tr>
-									<td>{{item.Date}}</td>
-									<td>{{item.Time}}</td>
-									<td>{{item.Location}}</td>
-								</tr>"
+                                    <td>{{item.Date}}</td>
+                                    <td>{{item.Time}}</td>
+                                    <td>{{item.Location}}</td>
+                                </tr>"
       with_items: "{{varsityschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
@@ -113,10 +113,10 @@
         marker_end: "varsityscheduleend"
         insertafter: "<!-- begin Varsity Schedule -->"
         block: "<tr>
-									<td>{{item.Date}}</td>
-									<td>{{item.Time}}</td>
-									<td>{{item.Location}}</td>
-								</tr>"
+                                    <td>{{item.Date}}</td>
+                                    <td>{{item.Time}}</td>
+                                    <td>{{item.Location}}</td>
+                                </tr>"
       with_items: "{{varsityschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
@@ -128,10 +128,10 @@
         marker_end: "varsityscheduleendonpage"
         insertafter: "<!-- begin Varsity Schedule on page-->"
         block: "<tr>
-									<td>{{item.Date}}</td>
-									<td>{{item.Time}}</td>
-									<td>{{item.Location}}</td>
-								</tr>"
+                                    <td>{{item.Date}}</td>
+                                    <td>{{item.Time}}</td>
+                                    <td>{{item.Location}}</td>
+                                </tr>"
       with_items: "{{varsityschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
@@ -466,10 +466,10 @@
         marker_end: "freshmenschedulescheduleend"
         insertafter: "<!-- begin Freshman Schedule -->"
         block: "<tr>
-									<td>{{item.Date}}</td>
-									<td>{{item.Time}}</td>
-									<td>{{item.Location}}</td>
-								</tr>"
+                                    <td>{{item.Date}}</td>
+                                    <td>{{item.Time}}</td>
+                                    <td>{{item.Location}}</td>
+                                </tr>"
       with_items: "{{freshmenschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
@@ -481,10 +481,10 @@
         marker_end: "freshmenschedulescheduleend"
         insertafter: "<!-- begin Freshman Schedule -->"
         block: "<tr>
-									<td>{{item.Date}}</td>
-									<td>{{item.Time}}</td>
-									<td>{{item.Location}}</td>
-								</tr>"
+                                    <td>{{item.Date}}</td>
+                                    <td>{{item.Time}}</td>
+                                    <td>{{item.Location}}</td>
+                                </tr>"
       with_items: "{{freshmenschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
@@ -496,10 +496,10 @@
         marker_end: "freshmenschedulescheduleend"
         insertafter: "<!-- begin Freshman Schedule -->"
         block: "<tr>
-									<td>{{item.Date}}</td>
-									<td>{{item.Time}}</td>
-									<td>{{item.Location}}</td>
-								</tr>"
+                                    <td>{{item.Date}}</td>
+                                    <td>{{item.Time}}</td>
+                                    <td>{{item.Location}}</td>
+                                </tr>"
       with_items: "{{freshmenschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
@@ -511,10 +511,10 @@
         marker_end: "jvschedulescheduleend"
         insertafter: "<!-- begin JV Schedule -->"
         block: "<tr>
-									<td>{{item.Date}}</td>
-									<td>{{item.Time}}</td>
-									<td>{{item.Location}}</td>
-								</tr>"
+                                    <td>{{item.Date}}</td>
+                                    <td>{{item.Time}}</td>
+                                    <td>{{item.Location}}</td>
+                                </tr>"
       with_items: "{{freshmenschedule}}"
     - name: Read users from CSV file and return a dictionary
       command: "ls shared_components"
@@ -558,10 +558,10 @@
         marker_end: "freshmenschedulescheduleend"
         insertafter: "<!-- begin sevenandeight Schedule -->"
         block: "<tr>
-									<td>{{item.Date}}</td>
-									<td>{{item.Time}}</td>
-									<td>{{item.Location}}</td>
-								</tr>"
+                                    <td>{{item.Date}}</td>
+                                    <td>{{item.Time}}</td>
+                                    <td>{{item.Location}}</td>
+                                </tr>"
       with_items: "{{sevenandeightyearoldschedule}}"
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
@@ -622,10 +622,10 @@
       register: newsentriesjson
     - name: Get latest file
       set_fact:
-        newstitle: "{{ (newsentriesjson | from_json).title }}"
-        newsparagraph1: "{{ (newsentriesjson | from_json).paragraph1 }}"
-        newsparagraph2: "{{ (newsentriesjson | from_json).paragraph2 }}"
-        newsimagelocation: "{{ (newsentriesjson | from_json).imagelocation }}"
+        newstitle: "{{ (newsentriesjson.stdout | from_json).title }}"
+        newsparagraph1: "{{ (newsentriesjson.stdout | from_json).paragraph1 }}"
+        newsparagraph2: "{{ (newsentriesjson.stdout | from_json).paragraph2 }}"
+        newsimagelocation: "{{ (newsentriesjson.stdout | from_json).imagelocation }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
