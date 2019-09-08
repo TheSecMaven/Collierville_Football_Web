@@ -34,14 +34,6 @@ varsitycoaches:
   format: "json"
   moderation: true
   path: "staticman/varsity"
-nineandtencoaches:
-  allowedFields: ["data","imagelocation", "bio", "name","title"]
-  branch: "master"
-  commitMessage: "Update nineandten Coaches"
-  filename: "coaches-{@timestamp}"
-  format: "json"
-  moderation: true
-  path: "staticman/nineandten"
 seventhgradeschedule:
   allowedFields: ["data","Date", "Time", "Location"]
   branch: "master"
