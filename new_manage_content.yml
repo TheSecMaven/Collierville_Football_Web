@@ -329,7 +329,7 @@
       </span><br><br>"
       with_items: "{{eightcoachesdata}}"
       loop_control:
-        index_var: my_idx]
+        index_var: my_idx
     - name: Execute the command in remote shell; stdout goes to the specified file on the remote.
       shell: cp /var/www/html/new/* /var/www/html
     - name: Create a directory if it does not exist

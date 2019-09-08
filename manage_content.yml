@@ -606,3 +606,39 @@
           </div></div>
         </div>"
       with_items: "{{varsitycoaches}}"
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/news/
+        patterns: 'newsentry-*.json'
+      register: newsentries
+    - name: Get latest file
+      set_fact:
+        newsentriesfile: "{{ newsentries.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{newsentriesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{newsentriesfile.path}}"
+      register: newsentriesjson
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/new/news.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
+        marker_begin: "{{item.title}} begin"
+        marker_end: "{{item.title}} end"
+        insertafter: '<!--  Add New Entries Below Here-->'
+        block: "<div class=\"row featurette ml-2\">
+  <div class=\"col-md-12 order-md-2 \"> 
+          <h4 class=\"featurette-heading order-md-2 pl-2\">{{item.title}}</h4><p class=\"lead\">
+          <ul class=\"newsstuff ml-5\">
+            <li>{{item.paragraph1}}<br><br>
+                {{item.paragraph2}}
+               </li>
+         <li>  <img src=\"{{item.imagelocation}}\" style=\"max-width:400px;max-height: 200px;height:auto;width:auto;background-color: black;\"></li>
+          </ul>
+         </p>
+  </div>
+</div>"
+      with_items: "{{newsentriesjson}}"
