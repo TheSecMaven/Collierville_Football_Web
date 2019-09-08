@@ -24,6 +24,15 @@
         - "self-service.html"
         - "swag.html"
         - "varsity.html"
+        - "management.html"
+    - name: Copy html web pages and content to apache directory
+      copy:
+        src: content/
+        dest: /var/www/html/content/
+    - name: Copy html web pages and content to apache directory
+      copy:
+        src: staticman/
+        dest: /var/www/html/staticman/
     - name: Copy html web pages and content to apache directory
       copy:
         src: shared_components/

@@ -27,11 +27,23 @@
         - /var/www/html/sponsors.html
         - /var/www/html/swag.html
         - /var/www/html/varsity.html
-    - name: Read users from CSV file and return a dictionary
-      read_csv:
-        path: shared_components/varsity_schedule.csv
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/varsity/
+        patterns: 'schedule-*.json'
       register: varsityschedule
-      delegate_to: localhost
+    - name: Get latest file
+      set_fact:
+        varsityschedulefile: "{{ varsityschedule.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{varsityschedulefile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{varsityschedulefile.path}}"
+      register: varsityschedulejson
+    - name: Get foo value.
+      set_fact:
+        varsityschedule: "{{ (varsityschedulejson.stdout | from_json).data }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -46,7 +58,7 @@
 									<td>{{item.Time}}</td>
 									<td>{{item.Location}}</td>
 								</tr>"
-      with_items: "{{varsityschedule.list}}"
+      with_items: "{{varsityschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -61,7 +73,7 @@
 									<td>{{item.Time}}</td>
 									<td>{{item.Location}}</td>
 								</tr>"
-      with_items: "{{varsityschedule.list}}"
+      with_items: "{{varsityschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -76,7 +88,7 @@
 									<td>{{item.Time}}</td>
 									<td>{{item.Location}}</td>
 								</tr>"
-      with_items: "{{varsityschedule.list}}"
+      with_items: "{{varsityschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -91,7 +103,7 @@
 									<td>{{item.Time}}</td>
 									<td>{{item.Location}}</td>
 								</tr>"
-      with_items: "{{varsityschedule.list}}"
+      with_items: "{{varsityschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -155,12 +167,23 @@
     </div>
 </div>"
       with_items: "{{primarynews.list}}"
-    - name: Read users from CSV file and return a dictionary
-      read_csv:
-        delimiter: ","
-        path: shared_components/varsitycoaches.csv
-      register: varsitycoaches
-      delegate_to: localhost
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/varsity/
+        patterns: 'coaches-*.json'
+      register: varsityschedule
+    - name: Get latest file
+      set_fact:
+        varsitycoachesfile: "{{ varsitycoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{varsitycoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{varsityschedulefile.path}}"
+      register: varsitycoachesjson
+    - name: Get foo value.
+      set_fact:
+        varsitycoaches: "{{ (varsitycoachesjson.stdout | from_json).data }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -183,13 +206,24 @@
             </div>
           </div></div>
         </div>"
-      with_items: "{{varsitycoaches.list}}"
-    - name: Read users from CSV file and return a dictionary
-      read_csv:
-        delimiter: ","
-        path: shared_components/freshmencoaches.csv
-      register: freshmencoaches
-      delegate_to: localhost
+      with_items: "{{varsitycoaches}}"
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/freshman/
+        patterns: 'coaches-*.json'
+      register: freshmanschedule
+    - name: Get latest file
+      set_fact:
+        freshmancoachesfile: "{{ freshmancoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{freshmancoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{freshmanschedulefile.path}}"
+      register: freshmancoachesjson
+    - name: Get foo value.
+      set_fact:
+        freshmencoaches: "{{ (freshmancoachesjson.stdout | from_json).data }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -212,7 +246,7 @@
             </div>
           </div></div>
         </div>"
-      with_items: "{{freshmencoaches.list}}"
+      with_items: "{{freshmencoaches}}"
     - name: Read users from CSV file and return a dictionary
       read_csv:
         delimiter: ","
@@ -271,12 +305,23 @@
           </div></div>
         </div>"
       with_items: "{{seventhandeighthcoaches.list}}"
-    - name: Read users from CSV file and return a dictionary
-      read_csv:
-        delimiter: ","
-        path: shared_components/nineandtenyearoldscoaches.csv
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/nineandten/
+        patterns: 'coaches-*.json'
+      register: nineandtenschedule
+    - name: Get latest file
+      set_fact:
+        nineandtencoachesfile: "{{ nineandtencoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{nineandtencoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{nineandtenschedulefile.path}}"
       register: nineandtenyearoldscoaches
-      delegate_to: localhost
+    - name: Get foo value.
+      set_fact:
+        nineandtencoachesjsondata: "{{ (nineandtencoachesjson.stdout | from_json).data }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -299,12 +344,24 @@
             </div>
           </div></div>
         </div>"
-      with_items: "{{nineandtenyearoldscoaches.list}}"
-    - name: Read users from CSV file and return a dictionary
-      read_csv:
-        path: shared_components/freshmen_schedule.csv
-      register: freshmenschedule
-      delegate_to: localhost
+      with_items: "{{nineandtenyearoldscoaches}}"
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/freshman/
+        patterns: 'schedule-*.json'
+      register: freshmanschedule
+    - name: Get latest file
+      set_fact:
+        freshmanschedulefile: "{{ freshmanschedule.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{freshmanschedulefile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{freshmanschedulefile.path}}"
+      register: freshmanschedulejson
+    - name: Get foo value.
+      set_fact:
+        freshmenschedule: "{{ (freshmanschedulejson.stdout | from_json).data }}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -319,7 +376,7 @@
 									<td>{{item.Time}}</td>
 									<td>{{item.Location}}</td>
 								</tr>"
-      with_items: "{{freshmenschedule.list}}"
+      with_items: "{{freshmenschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -334,7 +391,7 @@
 									<td>{{item.Time}}</td>
 									<td>{{item.Location}}</td>
 								</tr>"
-      with_items: "{{freshmenschedule.list}}"
+      with_items: "{{freshmenschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -349,7 +406,7 @@
 									<td>{{item.Time}}</td>
 									<td>{{item.Location}}</td>
 								</tr>"
-      with_items: "{{freshmenschedule.list}}"
+      with_items: "{{freshmenschedule}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -364,7 +421,7 @@
 									<td>{{item.Time}}</td>
 									<td>{{item.Location}}</td>
 								</tr>"
-      with_items: "{{freshmenschedule.list}}"
+      with_items: "{{freshmenschedule}}"
     - name: Read users from CSV file and return a dictionary
       command: "ls shared_components"
       register: shared_components_out

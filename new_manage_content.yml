@@ -1,0 +1,194 @@
+#
+# Playbook to update apache after updates to website
+#
+- hosts: chsservers
+  remote_user: jenkins
+  tasks:
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/varsity/
+        patterns: 'schedule-*.json'
+      register: varsityschedule
+    - name: Get latest file
+      set_fact:
+        varsityschedulefile: "{{ varsityschedule.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{varsityschedulefile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{varsityschedulefile.path}}"
+      register: varsityschedulejson
+    - name: Get foo value.
+      set_fact:
+        varsityschedulejsondata: "{{ (varsityschedulejson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/varsityschedule.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "varsityschedule"
+        marker_end: "varsityschedule"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Date]\" value=\"{{item.Date}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Time]\" value=\"{{item.Time}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Location]\" value=\"{{item.Location}}\">
+      </span><br><br>"
+      with_items: "{{varsityschedulejsondata}}"
+      loop_control:
+        index_var: my_idx
+    - name: Read users from CSV file and return a dictionary
+      command: "ls content"
+      register: content_out
+      delegate_to: localhost
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/management.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item}}-->"
+        marker_begin: "selfservicebegin"
+        marker_end: "selfserviceend"
+        insertafter: "<!-- Begin Management things-->"
+        block: "<li class=\"list-item\">  <a href=\"content\\{{item}}\" target=\"_blank\">{{item}}</a> </li>"
+      with_items: "{{content_out.stdout_lines}}"
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/freshman/
+        patterns: 'schedule-*.json'
+      register: freshmanschedule
+    - name: Get latest file
+      set_fact:
+        freshmanschedulefile: "{{ freshmanschedule.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{freshmanschedulefile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{freshmanschedulefile.path}}"
+      register: freshmanschedulejson
+    - name: Get foo value.
+      set_fact:
+        freshmanschedulejsondata: "{{ (freshmanschedulejson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/freshmanschedule.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "freshmanschedule"
+        marker_end: "freshmanschedule"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Date]\" value=\"{{item.Date}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Time]\" value=\"{{item.Time}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][Location]\" value=\"{{item.Location}}\">
+      </span><br><br>"
+      with_items: "{{freshmanschedulejsondata}}"
+      loop_control:
+        index_var: my_idx
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/freshman/
+        patterns: 'coaches-*.json'
+      register: freshmanschedule
+    - name: Get latest file
+      set_fact:
+        freshmancoachesfile: "{{ freshmancoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{freshmancoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{freshmanschedulefile.path}}"
+      register: freshmancoachesjson
+    - name: Get foo value.
+      set_fact:
+        freshmancoachesjsondata: "{{ (freshmancoachesjson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/freshmancoaches.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "freshmanschedule"
+        marker_end: "freshmanschedule"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][name]\" value=\"{{item.name}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][title]\" value=\"{{item.title}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type=\"text\" name=\"fields[data][{{my_idx}}][bio]\" value=\"{{item.bio}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][imagelocation]\" value=\"{{item.imagelocation}}\">
+      </span><br><br>"
+      with_items: "{{freshmanschedulejsondata}}"
+      loop_control:
+        index_var: my_idx
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/varsity/
+        patterns: 'coaches-*.json'
+      register: varsityschedule
+    - name: Get latest file
+      set_fact:
+        varsitycoachesfile: "{{ varsitycoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{varsitycoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{varsityschedulefile.path}}"
+      register: varsitycoachesjson
+    - name: Get foo value.
+      set_fact:
+        varsitycoachesjsondata: "{{ (varsitycoachesjson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/varsitycoaches.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "varsityschedule"
+        marker_end: "varsityschedule"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][name]\" value=\"{{item.name}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][title]\" value=\"{{item.title}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type=\"text\" name=\"fields[data][{{my_idx}}][bio]\" value=\"{{item.bio}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][imagelocation]\" value=\"{{item.imagelocation}}\">
+      </span><br><br>"
+      with_items: "{{varsityschedulejsondata}}"
+      loop_control:
+        index_var: my_idx
+    - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
+      find:
+        paths: /var/www/html/staticman/nineandten/
+        patterns: 'coaches-*.json'
+      register: nineandtenschedule
+    - name: Get latest file
+      set_fact:
+        nineandtencoachesfile: "{{ nineandtencoaches.files | sort(attribute='mtime',reverse=true) | first }}"
+    - name: debug
+      debug:
+        msg: "{{nineandtencoachesfile}}"
+    - name: Read JSON file (can also be a variable).
+      shell: "cat {{nineandtenschedulefile.path}}"
+      register: nineandtencoachesjson
+    - name: Get foo value.
+      set_fact:
+        nineandtencoachesjsondata: "{{ (nineandtencoachesjson.stdout | from_json).data }}"
+    - name: Insert/Update HTML surrounded by custom markers after <body> line
+      become: yes
+      become_user: root
+      blockinfile:
+        path: "/var/www/html/content/nineandtencoaches.html"
+        marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
+        marker_begin: "nineandtenschedule"
+        marker_end: "nineandtenschedule"
+        insertafter: '<!-- Input Form-->'
+        block: "<span class=\"member_data\">
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][name]\" value=\"{{item.name}}\">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][title]\" value=\"{{item.title}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type=\"text\" name=\"fields[data][{{my_idx}}][bio]\" value=\"{{item.bio}}\" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type=\"text\" name=\"fields[data][{{my_idx}}][imagelocation]\" value=\"{{item.imagelocation}}\">
+      </span><br><br>"
+      with_items: "{{nineandtenschedulejsondata}}"
+      loop_control:
+        index_var: my_idx
