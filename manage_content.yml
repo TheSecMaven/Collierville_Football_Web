@@ -4,6 +4,25 @@
 - hosts: chsservers
   remote_user: jenkins
   tasks:
+    - name: Copy html web pages and content to apache directory
+      copy:
+        src: "{{ item }}"
+        dest: /var/www/html
+      with_fileglob: 
+        - "sixthgrade.html"
+        - "seventhandeighthgrade.html"
+        - "nineandtenyearold.html"
+        - "facilities.html"
+        - "freshman.html"
+        - "index.html"
+        - "news.html"
+        - "schedule.html"
+        - "seasonticket.html"
+        - "sponsors.html"
+        - "self-service.html"
+        - "swag.html"
+        - "varsity.html"
+        - "management.html"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
@@ -179,7 +198,7 @@
       debug:
         msg: "{{varsitycoachesfile}}"
     - name: Read JSON file (can also be a variable).
-      shell: "cat {{varsityschedulefile.path}}"
+      shell: "cat {{varsitycoachesfile.path}}"
       register: varsitycoachesjson
     - name: Get foo value.
       set_fact:
@@ -222,7 +241,7 @@
       debug:
         msg: "{{freshmancoachesfile}}"
     - name: Read JSON file (can also be a variable).
-      shell: "cat {{freshmanschedulefile.path}}"
+      shell: "cat {{freshmancoachesfile.path}}"
       register: freshmancoachesjson
     - name: Get foo value.
       set_fact:
