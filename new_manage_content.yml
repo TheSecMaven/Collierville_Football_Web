@@ -46,7 +46,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/management.html"
+        path: "/var/www/html/new/management.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item}}-->"
         marker_begin: "selfservicebegin"
         marker_end: "selfserviceend"
@@ -329,4 +329,10 @@
       </span><br><br>"
       with_items: "{{eightcoachesdata}}"
       loop_control:
-        index_var: my_idx
+        index_var: my_idx]
+    - name: Execute the command in remote shell; stdout goes to the specified file on the remote.
+      shell: cp /var/www/html/new/* /var/www/html
+    - name: Create a directory if it does not exist
+      file:
+        path: /var/www/html/new
+        state: absent

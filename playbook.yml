@@ -6,10 +6,14 @@
   become: yes
   become_user: root
   tasks:
+    - name: Create a directory if it does not exist
+      file:
+        path: /var/www/html/new
+        state: directory
     - name: Copy html web pages and content to apache directory
       copy:
         src: "{{ item }}"
-        dest: /var/www/html
+        dest: /var/www/html/new
       with_fileglob: 
         - "sixthgrade.html"
         - "seventhgrade.html"
@@ -26,6 +30,8 @@
         - "swag.html"
         - "varsity.html"
         - "management.html"
+      become: yes
+      become_user: root
     - name: Copy html web pages and content to apache directory
       copy:
         src: content/

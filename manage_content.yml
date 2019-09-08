@@ -4,10 +4,14 @@
 - hosts: chsservers
   remote_user: jenkins
   tasks:
+    - name: Create a directory if it does not exist
+      file:
+        path: /var/www/html/new
+        state: directory
     - name: Copy html web pages and content to apache directory
       copy:
         src: "{{ item }}"
-        dest: /var/www/html
+        dest: /var/www/html/new
       with_fileglob: 
         - "sixthgrade.html"
         - "seventhgrade.html"
@@ -37,19 +41,19 @@
         insertafter: "<body>"
         block: "{{ lookup('file', 'shared_components/navbar.html') }}"
       with_items:
-        - /var/www/html/sixthgrade.html
-        - /var/www/html/seventhgrade.html
-        - /var/www/html/eighthgrade.html
-        - /var/www/html/nineandtenyearold.html
-        - /var/www/html/facilities.html
-        - /var/www/html/freshman.html
-        - /var/www/html/index.html
-        - /var/www/html/news.html
-        - /var/www/html/schedule.html
-        - /var/www/html/seasonticket.html
-        - /var/www/html/sponsors.html
-        - /var/www/html/swag.html
-        - /var/www/html/varsity.html
+        - /var/www/html/new/sixthgrade.html
+        - /var/www/html/new/seventhgrade.html
+        - /var/www/html/new/eighthgrade.html
+        - /var/www/html/new/nineandtenyearold.html
+        - /var/www/html/new/facilities.html
+        - /var/www/html/new/freshman.html
+        - /var/www/html/new/index.html
+        - /var/www/html/new/news.html
+        - /var/www/html/new/schedule.html
+        - /var/www/html/new/seasonticket.html
+        - /var/www/html/new/sponsors.html
+        - /var/www/html/new/swag.html
+        - /var/www/html/new/varsity.html
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/varsity/
@@ -71,7 +75,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/index.html"
+        path: "/var/www/html/new/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
@@ -86,7 +90,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/schedule.html"
+        path: "/var/www/html/new/schedule.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
@@ -101,7 +105,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/varsity.html"
+        path: "/var/www/html/new/varsity.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityschedule"
         marker_end: "varsityscheduleend"
@@ -116,7 +120,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/index.html"
+        path: "/var/www/html/new/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "varsityscheduleonpage"
         marker_end: "varsityscheduleendonpage"
@@ -131,7 +135,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/index.html"
+        path: "/var/www/html/new/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
         marker_begin: "thepast"
         marker_end: "thepastend"
@@ -141,7 +145,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/index.html"
+        path: "/var/www/html/new/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
         marker_begin: "thepresent"
         marker_end: "thepresentend"
@@ -151,7 +155,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/index.html"
+        path: "/var/www/html/new/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
         marker_begin: "thefuture"
         marker_end: "thefutureend"
@@ -166,7 +170,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/index.html"
+        path: "/var/www/html/new/index.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Title}}-->"
         marker_begin: "primarynews"
         marker_end: "primarynewsend"
@@ -214,7 +218,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/varsity.html"
+        path: "/var/www/html/new/varsity.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "varsitycoaches"
         marker_end: "varsitycoachesend"
@@ -254,7 +258,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/freshman.html"
+        path: "/var/www/html/new/freshman.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "freshmencoaches"
         marker_end: "freshmencoachesend"
@@ -294,7 +298,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/sixthgrade.html"
+        path: "/var/www/html/new/sixthgrade.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "somecoachstart"
         marker_end: "somecoachesend"
@@ -334,7 +338,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/seventhgrade.html"
+        path: "/var/www/html/new/seventhgrade.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "seventhandeighthcoaches"
         marker_end: "seventhandeighthcoachesend"
@@ -374,7 +378,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/eighthgrade.html"
+        path: "/var/www/html/new/eighthgrade.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "seventhandeighthcoaches"
         marker_end: "seventhandeighthcoachesend"
@@ -414,7 +418,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/nineandtenyearold.html"
+        path: "/var/www/html/new/nineandtenyearold.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.name}}-->"
         marker_begin: "nineandtenyearoldscoaches"
         marker_end: "nineandtenyearoldscoachesend"
@@ -454,7 +458,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/freshman.html"
+        path: "/var/www/html/new/freshman.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "freshmenscheduleschedule"
         marker_end: "freshmenschedulescheduleend"
@@ -469,7 +473,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/varsity.html"
+        path: "/var/www/html/new/varsity.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "freshmenscheduleschedule"
         marker_end: "freshmenschedulescheduleend"
@@ -484,7 +488,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/schedule.html"
+        path: "/var/www/html/new/schedule.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "freshmenscheduleschedule"
         marker_end: "freshmenschedulescheduleend"
@@ -499,7 +503,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/schedule.html"
+        path: "/var/www/html/new/schedule.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item.Date}}-->"
         marker_begin: "jvscheduleschedule"
         marker_end: "jvschedulescheduleend"
@@ -518,7 +522,7 @@
       become: yes
       become_user: root
       blockinfile:
-        path: "/var/www/html/self-service.html"
+        path: "/var/www/html/new/self-service.html"
         marker: "<!-- {mark} ANSIBLE MANAGED BLOCK {{item}}-->"
         marker_begin: "selfservicebegin"
         marker_end: "selfserviceend"
