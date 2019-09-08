@@ -318,7 +318,7 @@
             </div>
           </div></div>
         </div>"
-      with_items: "{{sixthgradecoaches.list}}"
+      with_items: "{{sixthgradecoaches}}"
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/seven/
@@ -358,7 +358,7 @@
             </div>
           </div></div>
         </div>"
-      with_items: "{{sevengradecoaches.list}}"
+      with_items: "{{sevengradecoaches}}"
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/eight/
@@ -398,7 +398,7 @@
             </div>
           </div></div>
         </div>"
-      with_items: "{{eighthgradecoaches.list}}"
+      with_items: "{{eighthgradecoaches}}"
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/nineandten/
