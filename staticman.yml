@@ -3,11 +3,42 @@
 # For example, you can have one property to handle comment submission and
 # another one to handle posts.
 varsityschedule:
-  allowedFields: ["data", "email", "url", "message","Date", "Time", "Location"]
-
+  allowedFields: ["data","Date", "Time", "Location"]
   branch: "master"
-  commitMessage: "Add Staticman data"
+  commitMessage: "Update Varsity Schedule"
   filename: "schedule-{@timestamp}"
   format: "json"
   moderation: true
-  path: "varsity"
+  path: "staticman/varsity"
+freshmanschedule:
+  allowedFields: ["data","Date", "Time", "Location"]
+  branch: "master"
+  commitMessage: "Update Freshman Schedule"
+  filename: "schedule-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/freshman"
+freshmancoaches:
+  allowedFields: ["data","imagelocation", "bio", "name","title"]
+  branch: "master"
+  commitMessage: "Update Freshman Coaches"
+  filename: "coaches-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/freshman"
+varsitycoaches:
+  allowedFields: ["data","imagelocation", "bio", "name","title"]
+  branch: "master"
+  commitMessage: "Update Varsity Coaches"
+  filename: "coaches-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/varsity"
+nineandtencoaches:
+  allowedFields: ["data","imagelocation", "bio", "name","title"]
+  branch: "master"
+  commitMessage: "Update nineandten Coaches"
+  filename: "coaches-{@timestamp}"
+  format: "json"
+  moderation: true
+  path: "staticman/nineandten"

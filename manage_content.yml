@@ -171,7 +171,7 @@
       find:
         paths: /var/www/html/staticman/varsity/
         patterns: 'coaches-*.json'
-      register: varsityschedule
+      register: varsitycoaches
     - name: Get latest file
       set_fact:
         varsitycoachesfile: "{{ varsitycoaches.files | sort(attribute='mtime',reverse=true) | first }}"
@@ -211,7 +211,7 @@
       find:
         paths: /var/www/html/staticman/freshman/
         patterns: 'coaches-*.json'
-      register: freshmanschedule
+      register: freshmancoaches
     - name: Get latest file
       set_fact:
         freshmancoachesfile: "{{ freshmancoaches.files | sort(attribute='mtime',reverse=true) | first }}"
@@ -309,7 +309,7 @@
       find:
         paths: /var/www/html/staticman/nineandten/
         patterns: 'coaches-*.json'
-      register: nineandtenschedule
+      register: nineandtencoaches
     - name: Get latest file
       set_fact:
         nineandtencoachesfile: "{{ nineandtencoaches.files | sort(attribute='mtime',reverse=true) | first }}"
