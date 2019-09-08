@@ -206,7 +206,7 @@
             </div>
           </div></div>
         </div>"
-      with_items: "{{varsitycoaches}}"
+      with_items: "{{varsitycoachesjson}}"
     - name: Find /var/log files equal or greater than 10 megabytes ending with .old or .log.gz
       find:
         paths: /var/www/html/staticman/freshman/
