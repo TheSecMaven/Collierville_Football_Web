@@ -98,7 +98,7 @@ sevenandeightyearoldcoaches:
   format: "json"
   moderation: true
   path: "staticman/sevenandeightyearold"
-sevenandeightyearoldschedule:
+sevenandeightyearoldschedules:
   allowedFields: ["data","Date", "Time", "Location"]
   branch: "master"
   commitMessage: "Update 7 & 8 year Old Schedule"
