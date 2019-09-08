@@ -17,6 +17,7 @@
       with_fileglob: 
         - "sixthgrade.html"
         - "seventhgrade.html"
+        - "sevenandeightyearolds.html"
         - "eighthgrade.html"
         - "nineandtenyearold.html"
         - "facilities.html"

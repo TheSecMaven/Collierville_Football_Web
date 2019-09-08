@@ -25,6 +25,7 @@
         - "seasonticket.html"
         - "sponsors.html"
         - "self-service.html"
+        - "sevenandeightyearolds.html"
         - "swag.html"
         - "varsity.html"
         - "management.html"
@@ -44,6 +45,7 @@
         - /var/www/html/new/sixthgrade.html
         - /var/www/html/new/seventhgrade.html
         - /var/www/html/new/eighthgrade.html
+        - /var/www/html/new/sevenandeightyearolds.html
         - /var/www/html/new/nineandtenyearold.html
         - /var/www/html/new/facilities.html
         - /var/www/html/new/freshman.html
