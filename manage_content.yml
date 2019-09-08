@@ -184,6 +184,9 @@
     - name: Get foo value.
       set_fact:
         varsitycoaches: "{{ (varsitycoachesjson.stdout | from_json).data }}"
+    - name: debug
+      debug:
+        msg: "{{varsitycoaches}}"
     - name: Insert/Update HTML surrounded by custom markers after <body> line
       become: yes
       become_user: root
